@@ -24,3 +24,11 @@ map("n", "<M-m>", ":bp<CR>", opts) -- navigate to previous buffer
 
 -- Toggle Spellcheck
 map("n", "<leader>sp", ":setlocal spell!<CR>", opts) -- split horizontally
+
+-- Stay in indent mode
+map("v", "<", "<gv", opts)
+map("v", ">", ">gv", opts)
+
+-- Move text up and down
+map("v", "<C-J>", ":m .+1<CR>==gv", opts)
+map("v", "<C-K>", ":m .-2<CR>==gv", opts)
