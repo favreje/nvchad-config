@@ -6,12 +6,12 @@
 local M = {}
 
 M.base46 = {
-  theme = "nightfox",
+  theme = "sweetpastel",
 
-  -- hl_override = {
-  -- 	Comment = { italic = true },
-  -- 	["@comment"] = { italic = true },
-  -- },
+  hl_override = {
+    Comment = { fg = "#617160" },
+    ["@comment"] = { fg = "#617160" },
+  },
 }
 
 M.mason = {

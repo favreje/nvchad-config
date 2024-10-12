@@ -14,6 +14,7 @@ return {
 
   {
     "vim-treesitter/nvim-treesitter",
+    url = "git@github.com:nvim-treesitter/nvim-treesitter.git",
     opts = {
       ensure_installed = {
         "bash",
