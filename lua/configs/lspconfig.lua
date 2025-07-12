@@ -36,6 +36,13 @@ lspconfig.pyright.setup {
   filetypes = { "python" },
 }
 
+-- C
+lspconfig.clangd.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
+
+-- Go
 lspconfig.gopls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
@@ -50,4 +57,19 @@ lspconfig.gopls.setup {
       },
     },
   },
+}
+
+-- SQL
+lspconfig.sqls.setup {
+  cmd = { "sqls" },
+  filetypes = { "sql" },
+  root_dir = lspconfig.util.root_pattern(".git", ".sqls.yml"),
+  on_attach = function(client, bufnr)
+    -- Disable formatting capabilities
+    client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.documentRangeFormattingProvider = false
+    -- Apply other NvChad settings
+    on_attach(client, bufnr)
+  end,
+  capabilities = capabilities,
 }

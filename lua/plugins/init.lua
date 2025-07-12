@@ -36,6 +36,8 @@ return {
         "make",
         "python",
         "regex",
+        "c",
+        "sql",
       },
     },
   },
@@ -57,6 +59,40 @@ return {
     config = function()
       require("nvim-surround").setup {
         -- Configuration here, or leave empty to use defaults
+      }
+    end,
+  },
+
+  -- Change autocompletion behavior to accept a selection with <C-i>, and to return tab and shift-
+  -- tab to their original fallback behavior
+  {
+    "hrsh7th/nvim-cmp",
+    opts = function()
+      local cmp = require "cmp"
+      return {
+        mapping = {
+          ["<C-n>"] = cmp.mapping.select_next_item(),
+          ["<C-p>"] = cmp.mapping.select_prev_item(),
+          ["<C-i>"] = cmp.mapping.confirm { select = true },
+          ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+          ["<C-f>"] = cmp.mapping.scroll_docs(4),
+          ["<C-e>"] = cmp.mapping.close(),
+        },
+        completion = {
+          completeopt = "menu,menuone,noselect",
+        },
+        snippet = {
+          expand = function(args)
+            require("luasnip").lsp_expand(args.body)
+          end,
+        },
+        sources = cmp.config.sources {
+          { name = "nvim_lsp" },
+          { name = "luasnip" },
+          { name = "buffer" },
+          { name = "nvim_lua" },
+          { name = "path" },
+        },
       }
     end,
   },
